@@ -1,9 +1,11 @@
 const server = require('express')();
 const bodyParser = require('body-parser');
-const {port} = require('./config');
+const config = require('./config');
+const {port} = config;
 
 server.use(bodyParser.json());
 
+require('./dbUtil')(config);
 require('./routes/get')(server);
 
 server.listen(port, () => {
